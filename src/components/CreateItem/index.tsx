@@ -43,13 +43,11 @@ export class CreateItem extends React.Component<Interfaces.Props, Interfaces.Sta
 
     const { fields } = this.props;
 
-    console.log(fields);
-
     return (
 
       <footer>
         {!this.state.creating &&
-          <button onClick={this.startItemCreate}>New</button>
+          <button onClick={this.startItemCreate} className="mdl-button mdl-button--raised mdl-button--accent">Add</button>
         }
         {this.state.creating && 
           <FormContainer onSubmit={this.saveItemCreate} cancelSubmit={this.cancelItemCreate} fieldData={fields} />

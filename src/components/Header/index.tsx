@@ -12,7 +12,7 @@ export class Header extends React.Component<Interfaces.Props, Interfaces.State> 
   render() {
     return (
       <header className="">
-        <h1>Stitch</h1>
+        <h1><i className="material-icons">transform</i> Stitch</h1>
         <h2></h2>
         <p></p>
       </header>

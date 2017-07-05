@@ -4,6 +4,7 @@ import * as style from './style.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers';
+import { pageTypeFields } from '../../reducers/pagetypes/model';
 import { PageTypesHeader, ContentItem, CreateItem } from '../../components';
 import { Interfaces } from './interfaces';
 
@@ -20,27 +21,12 @@ export class PageTypesContainer extends React.Component<Interfaces.Props, Interf
 
     const { pageTypes, actions, children } = this.props;
     const pageTypeCount = Object.keys(pageTypes).length;
-    const newPageTypeFields = {
-      name: { 
-        type: 'text',
-        name: 'name', 
-        label: 'Page Type', 
-        value: '',
-        validators: []
-      },
-      description: { 
-        type: 'text',
-        name: 'description', 
-        label: 'Description', 
-        value: '',
-        validators: []
-      }
-    };
 
     return (
       <section>
         <PageTypesHeader />
-        <ul>
+        {!pageTypeCount && <p>No page types created yet.</p>}
+        <ul className="list-unstyled">
           {Object.keys(pageTypes).map(function(pageTypeId, index){
             return (
               <li key={index}>
@@ -53,7 +39,7 @@ export class PageTypesContainer extends React.Component<Interfaces.Props, Interf
             )
           })}
         </ul>
-        <CreateItem createAction={actions.addPageType} fields={newPageTypeFields} />
+        <CreateItem createAction={actions.addPageType} fields={pageTypeFields().fields} />
       </section>
     );
   }

@@ -63,18 +63,22 @@ export class ContentItem extends React.Component<Interfaces.Props, Interfaces.St
     return (
 
       <div>
-        <h3>{itemData.name}</h3>
         {!this.state.editing &&
-          <div> 
-            {Object.keys(fields).map(function(fieldDatum, index){
-              const { label, value } = fields[fieldDatum];
-              return (<p key={index}>{label}: {value}</p>)
-            })}
-            <footer>
-              {deleteAction && <button onClick={this.deleteItem}>Delete</button>}
-              {editAction && <button onClick={this.startItemEdit}>Edit</button>}
+          <article className="mdl-card mdl-shadow--2dp">
+            <div className="mdl-card__title">
+              <h3 className="mdl-card__title-text">Item</h3>
+            </div>
+            <div className="mdl-card__supporting-text">
+              {Object.keys(fields).map(function(fieldDatum, index){
+                const { label, value } = fields[fieldDatum];
+                return (<p key={index}>{label}: {value}</p>)
+              })}
+            </div>
+            <footer className="mdl-card__actions mdl-card--border">
+              {deleteAction && <button onClick={this.deleteItem} className="mdl-button mdl-button--primary">Delete</button>}
+              {editAction && <button onClick={this.startItemEdit} className="mdl-button mdl-button--primary">Edit</button>}
             </footer>
-          </div>
+          </article>
         }
         {this.state.editing && 
           <FormContainer onSubmit={this.saveItemEdit} cancelSubmit={this.cancelItemEdit} fieldData={fields} initialValues={initialValues} />

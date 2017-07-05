@@ -7,6 +7,7 @@ export namespace Interfaces {
   	itemData: any;
   	deleteAction: any;
   	editAction: any;
+  	onSubmit: any;
   }
 
   export interface State {

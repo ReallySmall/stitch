@@ -9,10 +9,10 @@ export default handleActions<BlockTypeStoreState, BlockType>({
 
   [Actions.ADD_BLOCK_TYPE]: (state, action) => {
 
-    let newState = state;
-    let newId = uuidv4();
+    const newId = uuidv4();
+    const newState = state;
 
-    newState[newId] = blockTypeFields;
+    newState[newId] = blockTypeFields();
 
     Object.keys(action.data).map(function(datum, index){
       newState[newId].fields[datum].value = action.data[datum]; 
@@ -35,13 +35,17 @@ export default handleActions<BlockTypeStoreState, BlockType>({
   },
 
   [Actions.DELETE_BLOCK_TYPE]: (state, action) => {
-    return [{
-      
-    }, ...state]; 
+
+    let newState = state;
+
+    delete newState[action.id];
+
+    return Object.assign({}, state, newState);
+ 
   },
 
   [Actions.RESET_ALL]: (state, action) => {
-    return [];
+    return Object.assign({}, state, initialState);
   }
 
 }, initialState);

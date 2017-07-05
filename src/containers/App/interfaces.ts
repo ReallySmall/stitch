@@ -4,10 +4,8 @@ export namespace Interfaces {
 
   export interface Props extends RouteComponentProps<void> {
   	processing: boolean;
+    minDataEntered: boolean;
   	actions: any;
-  	details: any;
-  	pagetypes: any;
-  	blocktypes: any;
   }
 
   export interface State {

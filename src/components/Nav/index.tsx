@@ -23,16 +23,16 @@ export class Nav extends React.Component<Interfaces.Props, Interfaces.State> {
 
       <nav className={cx(style.nav)}>
         <h3 className={cx(style.hidden)}>Nav</h3>
-        <ul className="list-group unstyled">
+        <ul className="mdl-list">
           {routes.map(function(route, index){
             if(route.inNav){
               return (
-                <li key={index}>
-                  <NavLink 
-                    to={route.path} 
-                    className={cx('list-group-item')}
-                    activeClassName='active'>
-                    {route.title} {route.description}
+                <li key={index} className="mdl-list__item mdl-list__item--three-line">
+                  <NavLink to={route.path} activeClassName='active'>
+                      <span className="mdl-list__item-primary-content">
+                        <span>{route.title}</span>
+                        <span className="mdl-list__item-text-body">{route.description}</span>
+                      </span>
                   </NavLink>
                 </li>
               );

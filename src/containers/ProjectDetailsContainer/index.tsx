@@ -19,11 +19,12 @@ export class ProjectDetailsContainer extends React.Component<Interfaces.Props, I
         <ProjectDetailsHeader />
         {Object.keys(projectDetails).map(function(projectDetailId, index){
           return (
-            <ContentItem 
-              key={index} 
-              itemId={projectDetailId} 
-              itemData={projectDetails[projectDetailId]} 
-              editAction={actions.editProjectDetails} />
+            <div key={index}>
+              <ContentItem 
+                itemId={projectDetailId} 
+                itemData={projectDetails[projectDetailId]} 
+                editAction={actions.editProjectDetails} />
+            </div>
           )
         })}
       </section>

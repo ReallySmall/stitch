@@ -9,10 +9,10 @@ export default handleActions<PageTypeStoreState, PageType>({
 
   [Actions.ADD_PAGE_TYPE]: (state, action) => {
 
-    let newState = state;
-    let newId = uuidv4();
+    const newId = uuidv4();
+    const newState = state;
 
-    newState[newId] = pageTypeFields;
+    newState[newId] = pageTypeFields();
 
     Object.keys(action.data).map(function(datum, index){
       newState[newId].fields[datum].value = action.data[datum]; 

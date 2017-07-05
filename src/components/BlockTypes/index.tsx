@@ -3,7 +3,7 @@ import * as classNames from 'classnames';
 import * as style from './style.css';
 import { Interfaces } from './interfaces';
 
-export class PageTypesHeader extends React.Component<Interfaces.Props, Interfaces.State> {
+export class BlockTypes extends React.Component<Interfaces.Props, Interfaces.State> {
 
   constructor(props?: Interfaces.Props, context?: any) {
     super(props, context);
@@ -11,11 +11,16 @@ export class PageTypesHeader extends React.Component<Interfaces.Props, Interface
 
   render() {
 
-    return (
+    const { children } = this.props;
 
-        <div>
-          <h2>Page Types</h2>
-      	</div>
+    return (
+      
+      <section>
+        <h2>Block Types</h2>
+        <ul>
+          {children}
+        </ul>
+      </section>
 
     );
 

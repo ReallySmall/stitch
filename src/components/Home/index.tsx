@@ -1,8 +1,10 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import * as style from './style.css';
-import { BindFieldsToState } from '../../helpers';
+import { NavLink } from 'react-router-dom';
 import { Interfaces } from './interfaces';
+
+const cx = classNames.bind(style);
 
 export class Home extends React.Component<Interfaces.Props, Interfaces.State> {
 
@@ -16,10 +18,11 @@ export class Home extends React.Component<Interfaces.Props, Interfaces.State> {
 
     return (
             
-      <section>
+      <div>
         <h2>Home</h2>
-        <p>Intro text</p>
-      </section>
+        <p>Introductory preamble</p>
+        <NavLink to='/project-details' className="mdl-button mdl-button--raised mdl-button--accent">Get started</NavLink>
+      </div>
 
     );
 

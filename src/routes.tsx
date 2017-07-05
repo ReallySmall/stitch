@@ -1,11 +1,10 @@
-import { ProjectDetailsContainer, PageTypesContainer, BlockTypesContainer } from './containers/';
-import { Home } from './components/';
+import { HomeContainer, ProjectDetailsContainer, PageTypesContainer, BlockTypesContainer } from './containers/';
 
 export const routes = [
   { 
     path: '/',
     exact: true,
-    view: Home,
+    view: HomeContainer,
     inNav: false,
     title: '',
     description: ''
@@ -16,7 +15,7 @@ export const routes = [
     view: ProjectDetailsContainer,
     inNav: true,
     title: 'Project Details',
-    description: 'test'
+    description: 'Specify the core attributes of an EPiServer site'
   },
   { 
     path: '/page-types',
@@ -24,7 +23,7 @@ export const routes = [
     view: PageTypesContainer,
     inNav: true,
     title: 'Page Types',
-    description: 'test'
+    description: 'Define page types for your site and the properties they will have'
   },
   { 
     path: '/block-types',
@@ -32,6 +31,8 @@ export const routes = [
     view: BlockTypesContainer,
     inNav: true,
     title: 'Block Types',
-    description: 'test'
+    description: 'Define block types for your site and the properties they will have'
   }
 ];
+
+

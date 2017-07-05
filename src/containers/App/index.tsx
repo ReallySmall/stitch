@@ -1,13 +1,12 @@
 import * as React from 'react';
 import * as CreateActions from '../../actions/create';
 import { bindActionCreators } from 'redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import * as style from './style.css';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers';
-import { ProjectDetailsContainer, PageTypesContainer, BlockTypesContainer } from '../../containers';
-import { Header, Nav, Home } from '../../components';
+import { Header, Nav } from '../../components';
 import { routes } from '../../routes';
 import { Interfaces } from './interfaces';
 
@@ -18,6 +17,7 @@ export class App extends React.Component<Interfaces.Props, Interfaces.State> {
     
     super(props, context);
     this.resetAll = this.resetAll.bind(this); // bind method
+    this.sendState = this.sendState.bind(this); // bind method
 
   }
 
@@ -32,9 +32,18 @@ export class App extends React.Component<Interfaces.Props, Interfaces.State> {
 
   }
 
+  sendState() {
+
+  	const { state } = this.props;
+  	const stateString = JSON.stringify(state);
+
+  	alert(stateString);
+
+  }
+
   render() {
 
-    const { actions, processing, details, pagetypes, blocktypes, children } = this.props;
+    const { actions, processing, minDataEntered } = this.props;
 
     return (
 
@@ -43,8 +52,8 @@ export class App extends React.Component<Interfaces.Props, Interfaces.State> {
         <div className="row">
           <div className="col-md-4">
             <Nav />
-            <button onClick={this.resetAll}>Start over</button>        
-            <button>Stitch</button>
+            <button onClick={this.resetAll} className="mdl-button">Start over</button>        
+            <button onClick={this.sendState} disabled={!minDataEntered} className="mdl-button mdl-button--raised mdl-button--accent">Stitch</button>
           </div>
           <main className="col-md-8">
             {routes.map((route, index) => (
@@ -65,10 +74,9 @@ export class App extends React.Component<Interfaces.Props, Interfaces.State> {
 
 function mapStateToProps(state: RootState) {
   return {
+  	state: state,
     processing: state.create.processing,
-    details: state.details,
-    pagetypes: state.pagetypes,
-    blocktypes: state.blocktypes
+    minDataEntered: state.create.minDataEntered
   };
 }
 
