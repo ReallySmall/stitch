@@ -22,6 +22,7 @@ export const routes = [
     exact: true,
     view: PageTypesContainer,
     inNav: true,
+    contentCount: 'pages',
     title: 'Page Types',
     description: 'Define page types for your site and the properties they will have'
   },
@@ -30,6 +31,7 @@ export const routes = [
     exact: true,
     view: BlockTypesContainer,
     inNav: true,
+    contentCount: 'blocks',
     title: 'Block Types',
     description: 'Define block types for your site and the properties they will have'
   }

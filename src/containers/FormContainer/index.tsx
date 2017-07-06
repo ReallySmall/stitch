@@ -1,39 +1,14 @@
 import * as React from 'react';
 import * as ProjectDetailsActions from '../../actions/details';
-import * as style from './style.css';
+import { renderTextField, renderCheckboxField} from '../../components/FormControls';
 import { reduxForm, Field } from 'redux-form'
 import { RootState } from '../../reducers';
+import * as style from './style.css';
 import { Interfaces } from './interfaces';
 
-const renderTextField = ({ input, label, type, meta: { touched, error } }) => {
-
-  return (
-    <div className="form-field mdl-textfield" style={{display: 'block'}}>
-      <label className="">{label}</label>
-      <input {...input} type={type} className="mdl-textfield__input" />
-      {touched && error && <p className="validation-error">{error}</p>}
-    </div>
-  )
-
-};
-
-const renderCheckboxField = ({ input, label, type, meta: { touched, error } }) => {
-
-  return (
-    <div className="form-field" style={{display: 'block'}}>
-      <label className="mdl-checkbox is-upgraded">
-        <input {...input} type={type} className="mdl-checkbox__input" />
-        <span className="mdl-checkbox__label">{label}</span>
-        <span className="mdl-checkbox__box-outline">
-          <span class="mdl-checkbox__tick-outline"></span>
-        </span>
-      </label>
-    </div>
-  )
-
-};
-
-const required = value => (value ? undefined : 'Required');
+const validationTypes = { // form field validation methods - TODO import this from a seperate module
+  required: value => (value ? undefined : 'Required') // does the field need a value?
+}
 
 @reduxForm({ form: 'edit'})
 export class FormContainer extends React.Component<Interfaces.Props, Interfaces.State> {
@@ -44,21 +19,29 @@ export class FormContainer extends React.Component<Interfaces.Props, Interfaces.
 
     return (
       <form onSubmit={handleSubmit}>
-        {Object.keys(fieldData).map(function(fieldDatum, index){
-          
-          const { name, type, label, validators } = fieldData[fieldDatum];
-          const fieldRenderer = type === 'checkbox' ? renderCheckboxField : renderTextField;
-          let validate = [];
+          <article className="mdl-card mdl-shadow--2dp">
+            <div className={style['form-field-wrapper']}>
 
-          if(validators.includes('required')){
-            validate.push(required);
-          }
+              {Object.keys(fieldData).map(function(fieldDatum, index){
+                
+                const { name, type, label, validators } = fieldData[fieldDatum];
+                const fieldRenderer = type === 'checkbox' ? renderCheckboxField : renderTextField; // TODO - make this MUCH more generic
+                const validate = validators.map(function(validationType){ // Convert array to validation method label strings to function references
+                  if(validationTypes[validationType]){ // if a corresponding validation method exists
+                    return validationTypes[validationType] // add it as a test to run against this control whenver it is updated
+                  }
+                });
 
-          return (<Field key={index} name={name} type={type} label={label} component={fieldRenderer} validate={validate} />)
+                return (<Field key={index} name={name} type={type} label={label} index={index} component={fieldRenderer} validate={validate} />)
 
-        })}
-        <button onClick={cancelSubmit} disabled={submitting} className="mdl-button mdl-button--primary">Cancel</button>
-        <button type="submit" disabled={submitting} className="mdl-button mdl-button--accent">Save</button>
+              })}
+
+            </div>
+            <footer className="mdl-card__actions">
+              <button onClick={cancelSubmit} disabled={submitting} className="mdl-button mdl-button--primary">Cancel</button>
+              <button type="submit" disabled={submitting} className="mdl-button mdl-button--accent">Save</button>
+            </footer>
+          </article>
       </form>
     );
 

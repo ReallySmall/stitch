@@ -28,8 +28,6 @@ export default handleActions<ProjectDetailsStoreState, ProjectDetails>({
 
    	let newState = state;
 
-   	console.log(action.data, newState);
-
   	Object.keys(action.data).map(function(datum, index){
       newState[action.id].fields[datum].value = action.data[datum]; 
     });
@@ -39,7 +37,14 @@ export default handleActions<ProjectDetailsStoreState, ProjectDetails>({
   },
 
   [Actions.RESET_ALL]: (state, action) => {
-  	return Object.assign({}, initialState);
+
+  	let newState = state;
+
+  	Object.keys(newState['0'].fields).map(function(field, index){
+      newState['0'].fields[field].value = ''; 
+    });
+
+  	return Object.assign({}, newState);
   }
 
 }, initialState);

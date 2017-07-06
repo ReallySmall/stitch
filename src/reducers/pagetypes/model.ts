@@ -1,14 +1,16 @@
 export const pageTypeFields = () => {
   return {
     fields: {
-      name: { 
+      name: {
+        isHeading: true,
         type: 'text',
         name: 'name', 
-        label: 'Page Type', 
+        label: 'Name', 
         value: '',
         validators: ['required']
       },
-      description: { 
+      description: {
+        isHeading: false, 
         type: 'text',
         name: 'description', 
         label: 'Description', 

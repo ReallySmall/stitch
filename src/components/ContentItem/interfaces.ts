@@ -4,6 +4,7 @@ export namespace Interfaces {
 
   export interface Props {
   	itemId: number;
+    itemTitle: string;
   	itemData: any;
   	deleteAction: any;
   	editAction: any;

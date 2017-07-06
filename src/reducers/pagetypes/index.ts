@@ -45,7 +45,7 @@ export default handleActions<PageTypeStoreState, PageType>({
   },
 
   [Actions.RESET_ALL]: (state, action) => {
-    return Object.assign({}, state, initialState);
+    return {};
   }
 
 }, initialState);

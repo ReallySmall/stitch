@@ -52,7 +52,7 @@ export class ContentItem extends React.Component<Interfaces.Props, Interfaces.St
 
   render() {
 
-  	const { itemData, deleteAction, editAction } = this.props;
+  	const { itemTitle, itemData, deleteAction, editAction } = this.props;
     const { fields } = itemData;
     let initialValues = {};
 
@@ -64,14 +64,21 @@ export class ContentItem extends React.Component<Interfaces.Props, Interfaces.St
 
       <div>
         {!this.state.editing &&
-          <article className="mdl-card mdl-shadow--2dp">
+          <article className="mdl-card mdl-shadow--2dp" style={{marginBottom: 20 + 'px'}}>
             <div className="mdl-card__title">
-              <h3 className="mdl-card__title-text">Item</h3>
+              <h3 className="mdl-card__title-text">{itemTitle}</h3>
             </div>
             <div className="mdl-card__supporting-text">
               {Object.keys(fields).map(function(fieldDatum, index){
-                const { label, value } = fields[fieldDatum];
-                return (<p key={index}>{label}: {value}</p>)
+                let { label, value, isHeading } = fields[fieldDatum];
+                if(value === true){ value = 'yes' } // TODO
+                if(value === false){ value = 'no' } // TODO
+                return (
+                  <p key={index}>
+                    <span>{label}:</span>
+                    <span> <strong>{value}</strong></span>
+                  </p>
+                )
               })}
             </div>
             <footer className="mdl-card__actions mdl-card--border">

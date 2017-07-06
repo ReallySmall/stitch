@@ -4,7 +4,7 @@ export const blockTypeFields = () => {
       name: { 
         type: 'text',
         name: 'name', 
-        label: 'Block Type', 
+        label: 'Name', 
         value: '',
         validators: ['required']
       },

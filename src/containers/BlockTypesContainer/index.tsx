@@ -18,8 +18,6 @@ export class BlockTypesContainer extends React.Component<Interfaces.Props, Inter
     const { blockTypes, actions, children } = this.props;
     const blockTypeCount = Object.keys(blockTypes).length;
 
-    console.log(blockTypeCount);
-
     return (
       <section>
         <BlockTypesHeader />
@@ -29,6 +27,7 @@ export class BlockTypesContainer extends React.Component<Interfaces.Props, Inter
               return (
                 <li key={index}>
                   <ContentItem 
+                    itemTitle='Block Type'
                     itemId={blockTypeId} 
                     itemData={blockTypes[blockTypeId]} 
                     editAction={actions.editBlockType} 

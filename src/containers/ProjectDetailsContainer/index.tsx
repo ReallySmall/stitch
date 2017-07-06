@@ -21,6 +21,7 @@ export class ProjectDetailsContainer extends React.Component<Interfaces.Props, I
           return (
             <div key={index}>
               <ContentItem 
+                itemTitle='Project Details'
                 itemId={projectDetailId} 
                 itemData={projectDetails[projectDetailId]} 
                 editAction={actions.editProjectDetails} />

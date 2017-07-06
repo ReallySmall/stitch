@@ -17,7 +17,7 @@ export class Nav extends React.Component<Interfaces.Props, Interfaces.State> {
 
   render() {
 
-    const {} = this.props;
+    const { contentCounts } = this.props;
 
     return (
 
@@ -25,14 +25,20 @@ export class Nav extends React.Component<Interfaces.Props, Interfaces.State> {
         <h3 className={cx(style.hidden)}>Nav</h3>
         <ul className="mdl-list">
           {routes.map(function(route, index){
+            const count = contentCounts[route.contentCount];
             if(route.inNav){
               return (
                 <li key={index} className="mdl-list__item mdl-list__item--three-line">
-                  <NavLink to={route.path} activeClassName='active'>
-                      <span className="mdl-list__item-primary-content">
-                        <span>{route.title}</span>
-                        <span className="mdl-list__item-text-body">{route.description}</span>
+                  <NavLink to={route.path} activeClassName={cx(style['active'])} className={cx(style['nav-link'])}>
+                    <span className="mdl-list__item-primary-content">
+                      <span>
+                        {route.title} 
+                        {count > 0 && <span className="mdl-badge" data-badge={count}></span>}
                       </span>
+                      <span className="mdl-list__item-text-body">
+                        {route.description}
+                      </span>
+                    </span>
                   </NavLink>
                 </li>
               );

@@ -47,7 +47,7 @@ export class CreateItem extends React.Component<Interfaces.Props, Interfaces.Sta
 
       <footer>
         {!this.state.creating &&
-          <button onClick={this.startItemCreate} className="mdl-button mdl-button--raised mdl-button--accent">Add</button>
+          <button autoFocus onClick={this.startItemCreate} className="mdl-button mdl-button--raised mdl-button--accent">Add</button>
         }
         {this.state.creating && 
           <FormContainer onSubmit={this.saveItemCreate} cancelSubmit={this.cancelItemCreate} fieldData={fields} />

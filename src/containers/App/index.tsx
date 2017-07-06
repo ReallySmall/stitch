@@ -43,7 +43,7 @@ export class App extends React.Component<Interfaces.Props, Interfaces.State> {
 
   render() {
 
-    const { state, actions, processing, minDataEntered } = this.props;
+    const { state, actions, contentCounts, processing, minDataEntered } = this.props;
 
     return (
 
@@ -51,7 +51,7 @@ export class App extends React.Component<Interfaces.Props, Interfaces.State> {
         <Header />
         <div className="row">
           <div className="col-md-4">
-            <Nav />
+            <Nav contentCounts={contentCounts} />
             <button onClick={this.resetAll} className="mdl-button">Start over</button>        
             <button onClick={this.sendState} disabled={!minDataEntered} className="mdl-button mdl-button--raised mdl-button--accent">Stitch</button>
           </div>
@@ -75,6 +75,10 @@ export class App extends React.Component<Interfaces.Props, Interfaces.State> {
 function mapStateToProps(state: RootState) {
   return {
   	state: state,
+    contentCounts: {
+      pages: Object.keys(state.pagetypes).length,
+      blocks: Object.keys(state.blocktypes).length
+    },
     processing: state.create.processing,
     minDataEntered: state.create.minDataEntered
   };

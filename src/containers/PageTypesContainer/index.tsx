@@ -30,7 +30,8 @@ export class PageTypesContainer extends React.Component<Interfaces.Props, Interf
           {Object.keys(pageTypes).map(function(pageTypeId, index){
             return (
               <li key={index}>
-                <ContentItem 
+                <ContentItem
+                  itemTitle='Page Type'
                   itemId={pageTypeId} 
                   itemData={pageTypes[pageTypeId]} 
                   editAction={actions.editPageType} 

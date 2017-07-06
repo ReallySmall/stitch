@@ -45,7 +45,7 @@ export default handleActions<BlockTypeStoreState, BlockType>({
   },
 
   [Actions.RESET_ALL]: (state, action) => {
-    return Object.assign({}, state, initialState);
+    return {};
   }
 
 }, initialState);
