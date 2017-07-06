@@ -43,7 +43,7 @@ export class App extends React.Component<Interfaces.Props, Interfaces.State> {
 
   render() {
 
-    const { actions, processing, minDataEntered } = this.props;
+    const { state, actions, processing, minDataEntered } = this.props;
 
     return (
 
